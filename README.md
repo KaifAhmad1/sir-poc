@@ -15,7 +15,7 @@
 | Jurisdictions | State of Kuwait (CBK) + Kingdom of Saudi Arabia (SAMA) |
 | Classification | RESTRICTED — CO-DEVELOPMENT BRIEF |
 | Prepared By | Semantica Engineering / Joint Systems Architecture |
-| Timeline | July 1 – July 28, 2026 (20 working days) |
+| Timeline | July 1 – August 1, 2026 (25 working days) |
 
 ---
 
@@ -26,7 +26,7 @@
 3. [Architecture and Semantica Responsibilities](#3-architecture-and-semantica-responsibilities)
 4. [Sovereign Node Topology](#4-sovereign-node-topology)
 5. [Data Flow and Technology Stack](#5-data-flow-and-technology-stack)
-6. [4-Week Delivery Plan](#6-4-week-delivery-plan)
+6. [5-Week Delivery Plan](#6-5-week-delivery-plan)
 7. [Deliverables](#7-deliverables)
 8. [API Reference](#8-api-reference)
 9. [Financial Calibration Baseline](#9-financial-calibration-baseline)
@@ -40,13 +40,13 @@
 
 ## 1. Executive Summary
 
-This document defines the scope, architecture, and 4-week execution plan for integrating **Semantica** as the veracity and accountability middleware within **The Full Equation (TFE) Sovereign Integrity Rail (SIR) V.4.2**.
+This document defines the scope, architecture, and 5-week execution plan for integrating **Semantica** as the veracity and accountability middleware within **The Full Equation (TFE) Sovereign Integrity Rail (SIR) V.4.2**.
 
 Two sovereign case studies run in parallel: the **State of Kuwait** and the **Kingdom of Saudi Arabia**. Each country contributes four Critical Resource Nodes, totalling eight nodes across the PoC. These nodes are drawn directly from the Phase 0 Core-Node activation specifications in the SIR V.4.2 Master Proposals for each sovereign.
 
 The PoC proves that raw biophysical and industrial telemetry from these eight nodes can be converted into auditable, legally defensible **Sovereign Integrity Units (SIUs)**: reserve instruments structured to qualify as Tier-1 High-Quality Liquid Assets (HQLA) on the respective central bank balance sheets of the CBK and SAMA.
 
-**This PoC produces a running system with 16 named deliverables. Not a slide deck.**
+**This PoC produces a running system with 17 named deliverables. Not a slide deck.**
 
 ### At a Glance
 
@@ -56,7 +56,7 @@ The PoC proves that raw biophysical and industrial telemetry from these eight no
 | Critical Resource Nodes | 8 (4 per country) |
 | Rete compliance rules | 12 ecological rules + 2 Covenant Rules |
 | Acceptance gates | 8 binary pass/fail gates |
-| Deliverables | 16 |
+| Deliverables | 17 |
 | Demo steps | 14 (7 per country) |
 | Combined Year 1 TVL | $30,000,000,000 |
 | Combined 3-year treasury payout | $7,560,000,000 |
@@ -586,9 +586,9 @@ All telemetry is **simulated** using public datasets and synthetic generators ca
 
 ---
 
-## 6. 4-Week Delivery Plan
+## 6. 5-Week Delivery Plan
 
-**Timeline:** July 1 to July 28, 2026. 20 working days. Hard milestone at the end of each week.
+**Timeline:** July 1 to August 1, 2026. 25 working days. Hard milestone at the end of each week.
 
 ---
 
@@ -732,7 +732,7 @@ Compile the full rule libraries into `ReteEngine(jurisdiction="KWT")` and `ReteE
 
 ---
 
-### Week 4: Dashboard, PROV-O Export, Integration Testing and Demo Polish
+### Week 4: Dashboard, PROV-O Export and Integration Testing
 
 **July 21 to 25 (5 days)**
 
@@ -774,7 +774,7 @@ Finalise all endpoints in `api/main.py`. All endpoints are jurisdiction-aware. S
 
 #### Day 19: End-to-End Integration Testing
 
-Run the full 14-step demo loop and fix all failures before Day 20.
+Run the full 14-step demo loop and fix all failures before Week 5.
 
 **Kuwait (Steps 1 to 7):**
 
@@ -799,13 +799,57 @@ Run the full 14-step demo loop and fix all failures before Day 20.
 - [ ] Fix all integration failures surfaced during the run
 - [ ] Performance test: 100 concurrent telemetry packets (50 KWT + 50 SAU) through respective SHACL gates and graphs in under 5 seconds
 
-#### Day 20: Demo Hardening
+**Week 4 exit gate:**
+
+- [ ] All 8 dashboard panels render live WebSocket/REST data for both KWT and SAU with zero mocked state
+- [ ] Both PROV-O Turtle exports valid and parse with zero rdflib errors
+- [ ] All 8 REST endpoints and 4 WebSocket routes return correct, jurisdiction-aware responses
+- [ ] Full 14-step demo loop (7 KWT + 7 SAU) runs end-to-end from cold start with all failures logged for Week 5 burn-down
+
+---
+
+### Week 5: Hardening, Contingency Buffer and Demo Readiness
+
+**July 28 to August 1 (5 days)**
+
+**Goal:** No new features. This week exists to absorb risk: burn down whatever Week 4 testing surfaced, run a full regression against all 8 binary acceptance gates, and rehearse the demo until it is boring.
+
+#### Day 20: Full Gate Regression and Contingency Burn-Down
+
+- [ ] Re-run G1 to G8 (Section 10) back-to-back in a single automated suite; log pass/fail per gate per jurisdiction
+- [ ] Fix any failures carried over from the Day 19 integration run, prioritised by which acceptance gate they block
+- [ ] Re-run the 1,000-evaluation Rete determinism check (G1) and the p99 squeeze latency benchmark (G3) under load
+
+#### Day 21: Demo Hardening
 
 - [ ] Freeze the demo scenario script with exact click sequence, expected outputs, and talking points
 - [ ] Pre-seed both graphs with full Genesis Matrix data so the demo starts with no load lag
-- [ ] Capture backup screenshots of every panel for both country views
+- [ ] Capture backup screenshots of every panel for both country views, in case of live failure
 - [ ] Write `DEMO_SCRIPT.md` covering both KWT and SAU sequences
-- [ ] Final build test: `docker compose up --build` from a clean environment; all services green within 3 minutes
+
+#### Day 22: Clean-Environment Build Verification
+
+- [ ] Final build test: `docker compose up --build` from a clean environment (no cached layers, no pre-pulled images)
+- [ ] Confirm all services reach green health checks within 3 minutes
+- [ ] Re-validate both `.ttl` exports and the OpenAPI schema against the clean-build instance
+
+#### Day 23: Final Demo Rehearsal
+
+- [ ] Full 14-step run-through with all stakeholders (Section 12 communication cadence)
+- [ ] Time the run against the under-12-minute target; trim or reorder steps if needed
+- [ ] Collect and resolve any last feedback from TFE, STOKR, and Mustafa
+
+#### Day 24: Demo Day Buffer
+
+- [ ] Reserve day for any fixes surfaced in rehearsal; no new scope introduced
+- [ ] Final `docker compose up` smoke test immediately before the live session
+
+**Week 5 exit gate:**
+
+- [ ] All 8 binary acceptance gates (G1 to G8) pass in a single clean regression run, for both KWT and SAU
+- [ ] `DEMO_SCRIPT.md` finalised and matches the actual rehearsed sequence
+- [ ] `docker compose up --build` from a clean environment reaches all-green in under 3 minutes
+- [ ] Final demo rehearsal completed with stakeholder sign-off ahead of demo day
 
 ---
 
@@ -828,7 +872,8 @@ Run the full 14-step demo loop and fix all failures before Day 20.
 | D13 | W3C PROV-O Turtle Export: KWT and SAU | Kaif | Jul 23 | Valid `.ttl` files with all required PROV-O triples for all minting events in both jurisdictions |
 | D14 | FastAPI Backend: 8 jurisdiction-aware endpoints | Kaif | Jul 24 | All endpoints return correct responses for both KWT and SAU; OpenAPI schema published at `/docs` |
 | D15 | End-to-End Demo Loop: 14 steps (7 KWT + 7 SAU) | Kaif | Jul 25 | All 14 steps run clean from cold start |
-| D16 | DEMO_SCRIPT.md and Docker Compose package | Kaif | Jul 25 | Step-by-step script for both country sequences; `docker compose up` starts all services green in under 3 minutes |
+| D16 | DEMO_SCRIPT.md and Docker Compose package | Kaif | Aug 1 | Step-by-step script for both country sequences; `docker compose up --build` from a clean environment starts all services green in under 3 minutes |
+| D17 | Full Acceptance Gate Regression (G1–G8) | Kaif | Aug 1 | All 8 binary acceptance gates pass in a single automated run for both KWT and SAU, with results logged |
 
 ---
 
@@ -1001,10 +1046,10 @@ These values are hardcoded in the PoC tokenomics dashboard. Numbers are sourced 
 
 | Meeting | Frequency | Duration |
 | --- | --- | --- |
-| Engineering standup | Daily (Weeks 1 to 4) | 15 minutes, async if needed |
+| Engineering standup | Daily (Weeks 1 to 5) | 15 minutes, async if needed |
 | Architecture gate review | End of each week | 30-minute live call with deliverable demo |
-| Final demo rehearsal | July 24 | Full 14-step run-through with all stakeholders |
-| Demo day | July 25 | Mustafa and full team |
+| Final demo rehearsal | July 31 | Full 14-step run-through with all stakeholders |
+| Demo day | August 1 | Mustafa and full team |
 
 ---
 
@@ -1233,4 +1278,4 @@ RDFExporter().export(
 
 ---
 
-*Next action: Kaif to confirm Semantica SDK access and begin Day 1 environment setup on July 1, 2026. Both Kuwait and Saudi Arabia data pipelines initialised simultaneously on Day 1.*
+*Next action: Kaif to confirm Semantica SDK access and begin Day 1 environment setup on July 1, 2026. Both Kuwait and Saudi Arabia data pipelines initialised simultaneously on Day 1. Week 5 (July 28 – August 1) is reserved as a hardening and contingency buffer ahead of demo day.*
