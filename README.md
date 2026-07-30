@@ -1036,9 +1036,8 @@ These values are hardcoded in the PoC tokenomics dashboard. Numbers are sourced 
 
 | Name | Role | Scope |
 | --- | --- | --- |
-| **Kaif Ahmad** | Lead Engineer | Full stack for both jurisdictions: ingestion, knowledge graphs, reasoning engines, API, dashboard, and test suite |
+| **Mohammad Kaif** | Lead Engineer & Semantica Founder | Full stack for both jurisdictions: ingestion, knowledge graphs, reasoning engines, API, dashboard, and test suite; SDK guidance, SHACL/Rete configuration, PROV-O export specification, and dual-graph architecture approval |
 | **TFE Lead Architect** | Systems Architect | Hardware telemetry specifications, edge enclave data contracts, and node schema validation rules for Kuwait and Saudi Arabia |
-| **Mohd Mohd** | Semantica Founder | SDK guidance, SHACL/Rete configuration, PROV-O export specification, and dual-graph architecture approval |
 | **Tizian Rotermund and Egor Sukhanov** | STOKR Integration | TaaS stub API schema for multi-jurisdiction squeeze and mint signals; endpoint contract review on Day 18 |
 | **Mustafa** | Demo Stakeholder | Final demo approval and sovereign pilot acceptance for both Kuwait and Saudi Arabia configurations |
 
